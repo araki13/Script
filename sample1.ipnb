@@ -1,0 +1,165 @@
+{
+ "cells": [
+  {
+   "attachments": {},
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# VSCode上でのAnaconda-Navigatorの動作確認\n",
+    "ライブラリをインポートします。"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "from scipy import stats"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# サンプルデータの作成\n",
+    "data = [10, 15, 20, 25, 30, 35, 40, 45, 50]"
+   ]
+  },
+  {
+   "attachments": {},
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 統計値の説明\n",
+    "\n",
+    "### 平均値\n",
+    "平均値は、データセット内のすべての値の合計をデータ点の数で割ったものです。データセット全体の中心傾向を示す指標の1つです。\n",
+    "\n",
+    "### 中央値\n",
+    "中央値は、データセットを昇順に並べたときに、中央に位置する値です。データセットが偶数の場合、中央に位置する2つの値の平均が中央値になります。外れ値の影響を受けにくい中心傾向の指標です。\n",
+    "\n",
+    "### 標準偏差\n",
+    "標準偏差は、データが平均値からどれだけばらついているかを示す指標です。標準偏差が大きいほど、データは平均値から広がって分布しています。\n",
+    "\n",
+    "### 最大値\n",
+    "最大値は、データセット内の最も大きな値です。\n",
+    "\n",
+    "### 最小値\n",
+    "最小値は、データセット内の最も小さな値です。\n",
+    "\n",
+    "### 範囲（最大値 - 最小値）\n",
+    "範囲は、データセット内の最大値と最小値の差です。データの全体的な広がりを示す指標です。\n",
+    "\n",
+    "### 四分位数\n",
+    "四分位数は、データセットを昇順に並べたときに、25%（第1四分位数：Q1）、50%（第2四分位数：Q2）、75%（第3四分位数：Q3）の位置にある値です。四分位数は、データの分布とばらつきを示す指標です。\n",
+    "\n",
+    "### 分散\n",
+    "分散は、データが平均値からどれだけばらついているかを示す指標です。各データ点と平均値の差の二乗を平均したものです。標準偏差は分散の平方根です。\n",
+    "\n",
+    "### 歪度\n",
+    "歪度は、データ分布の非対称性を示す指標です。歪度が0の場合、データは左右対称です。歪度が正の場合、データは右に裾が長い（右に歪んでいる）ことを示します。歪度が負の場合、データは左に裾が長い（左に歪んでいる）ことを示します。\n",
+    "\n",
+    "### 尖度\n",
+    "尖度は、データ分布のピーク（尖り具合）を示す指標です。正規分布と比較して、尖度が0の場合、データ分布は正規分布と同じ尖り具合を持ちます。尖度が正の場合、データ分布は正規分布よりも尖ったピークを持ち、外れ値が多く含まれることを示します。尖度が負の場合、データ分布は正規分布よりも平たいピークを持ち、外れ値が少なく含まれることを示します"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 平均値\n",
+    "mean = np.mean(data)\n",
+    "\n",
+    "# 中央値\n",
+    "median = np.median(data)\n",
+    "\n",
+    "# 標準偏差\n",
+    "std_dev = np.std(data)\n",
+    "\n",
+    "# 最大値\n",
+    "max_value = np.max(data)\n",
+    "\n",
+    "# 最小値\n",
+    "min_value = np.min(data)\n",
+    "\n",
+    "# 範囲\n",
+    "range_value = max_value - min_value\n",
+    "\n",
+    "# 四分位数\n",
+    "quartiles = np.percentile(data, [25, 50, 75])\n",
+    "\n",
+    "# 分散\n",
+    "variance = np.var(data)\n",
+    "\n",
+    "# 歪度\n",
+    "skewness = stats.skew(data)\n",
+    "\n",
+    "# 尖度\n",
+    "kurtosis = stats.kurtosis(data)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Mean: 30.0\n",
+      "Median: 30.0\n",
+      "Standard Deviation: 12.909944487358056\n",
+      "Max Value: 50\n",
+      "Min Value: 10\n",
+      "Range: 40\n",
+      "Quartiles (Q1, Q2, Q3): [20. 30. 40.]\n",
+      "Variance: 166.66666666666666\n",
+      "Skewness: 0.0\n",
+      "Kurtosis: -1.2299999999999998\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(f\"Mean: {mean}\")\n",
+    "print(f\"Median: {median}\")\n",
+    "print(f\"Standard Deviation: {std_dev}\")\n",
+    "print(f\"Max Value: {max_value}\")\n",
+    "print(f\"Min Value: {min_value}\")\n",
+    "print(f\"Range: {range_value}\")\n",
+    "print(f\"Quartiles (Q1, Q2, Q3): {quartiles}\")\n",
+    "print(f\"Variance: {variance}\")\n",
+    "print(f\"Skewness: {skewness}\")\n",
+    "print(f\"Kurtosis: {kurtosis}\")"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "base",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.8"
+  },
+  "orig_nbformat": 4
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
